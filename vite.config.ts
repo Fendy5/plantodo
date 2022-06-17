@@ -1,5 +1,5 @@
 import { rmSync } from 'fs'
-import { join } from 'path'
+import {join, resolve as resolvePath} from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
@@ -9,6 +9,11 @@ rmSync('dist', { recursive: true, force: true }) // v14.14.0
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': resolvePath(__dirname, './src')
+    }
+  },
   plugins: [
     vue(),
     electron({
@@ -17,25 +22,25 @@ export default defineConfig({
         vite: {
           build: {
             sourcemap: false,
-            outDir: 'dist/electron/main',
-          },
-        },
+            outDir: 'dist/electron/main'
+          }
+        }
       },
       preload: {
         input: {
           // You can configure multiple preload here
-          splash: join(__dirname, 'electron/preload/splash.ts'),
+          splash: join(__dirname, 'electron/preload/splash.ts')
         },
         vite: {
           build: {
             // For debug
             sourcemap: 'inline',
-            outDir: 'dist/electron/preload',
+            outDir: 'dist/electron/preload'
           }
         }
-      },
+      }
     }),
     // Enable use Electron, Node.js API in Renderer-process
-    renderer(),
-  ],
+    renderer()
+  ]
 })
