@@ -1,13 +1,11 @@
 <template>
-  <div>index</div>
+  <div>about</div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {}
-  }
-}
+<script lang="ts">
+import {defineComponent} from "vue"
+
+export default defineComponent({})
 </script>
 
 <style lang="scss" scoped>

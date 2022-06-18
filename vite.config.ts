@@ -4,6 +4,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron/renderer'
+import Components from 'unplugin-vue-components/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
 rmSync('dist', { recursive: true, force: true }) // v14.14.0
 
@@ -16,6 +19,17 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    createSvgIconsPlugin({
+      iconDirs: [resolvePath(process.cwd(), 'src/assets/icons/svg')],
+      symbolId: 'icon-[dir]-[name]'
+    }),
+    Components({
+      resolvers: [
+        AntDesignVueResolver()
+      ],
+      dts: true,
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
+    }),
     electron({
       main: {
         entry: 'electron/main/index.ts',
