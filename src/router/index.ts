@@ -7,7 +7,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import { App } from "vue"
 import type { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
-import { PieChartOutlined, UserOutlined } from '@ant-design/icons-vue'
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -17,11 +16,41 @@ export const routes: Array<RouteRecordRaw> = [
     children: [
       {
         meta: {
-          title: 'Home',
+          title: '首页',
           icon: 'home'
         },
         path: '',
         component: () => import('@/views/home/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/long-plan',
+    component: Layout,
+    redirect: '',
+    children: [
+      {
+        meta: {
+          title: '计划',
+          icon: 'long-plan'
+        },
+        path: '',
+        component: () => import('@/views/long-plan/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/draft',
+    component: Layout,
+    redirect: '',
+    children: [
+      {
+        meta: {
+          title: '草稿',
+          icon: 'draft'
+        },
+        path: '',
+        component: () => import('@/views/draft/index.vue')
       }
     ]
   },
@@ -34,7 +63,7 @@ export const routes: Array<RouteRecordRaw> = [
         path: '',
         meta: {
           icon: 'about',
-          title: 'About'
+          title: '关于'
         },
         component: () => import('@/views/about/index.vue')
       }

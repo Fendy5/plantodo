@@ -10,7 +10,7 @@
       <router-link :to="i.path" >{{ i.meta }}</router-link>
     </MenuItem>
   </SubMenu>
-  <MenuItem :key="`${menu.path}+${menu.children[0].path}`" @click="goTo(menu.path)" v-else-if="menu.children.length===1">
+  <MenuItem :key="`${menu.path}${menu.children[0].path}`" @click="goTo(menu.path)" v-else-if="menu.children.length===1">
     <svg-icon class="anticon" :name="menu.children[0].meta.icon" />
     <span>{{ menu.children[0].meta.title }}</span>
   </MenuItem>
@@ -19,7 +19,7 @@
 <script lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
 import { MenuItem, SubMenu } from "ant-design-vue"
-import { defineComponent, PropType } from "vue"
+import {defineComponent, PropType} from "vue"
 import { useRouter } from 'vue-router'
 import { AntdIconProps } from "@ant-design/icons-vue/lib/components/AntdIcon"
 import SvgIcon from "@/components/SvgIcon/index.vue"

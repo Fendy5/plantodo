@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Space style="width: 100%">
-      <Button type="primary" loading>Loading</Button>
-      <Button type="primary" size="small" loading>Loading</Button>
-    </Space>
+    Home
   </div>
 </template>
 
