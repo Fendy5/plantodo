@@ -17,7 +17,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: '#333'
+    default: ''
   },
   size: {
     type: String,
@@ -26,3 +26,9 @@ const props = defineProps({
 })
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
+
+<style>
+svg {
+    fill: currentColor;
+}
+</style>
