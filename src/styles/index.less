@@ -1,0 +1,76 @@
+@import "ant-design-vue/dist/antd.css";
+
+.ProseMirror {
+  min-height: 450px;
+  background: #fff;
+  margin-top: 16px;
+  border-radius: 5px;
+  padding: 16px;
+  font-size: 16px;
+  box-shadow: 1px 1px 8px #f1f1f1;
+  &:focus {
+    outline: none;
+  }
+  p {
+    margin-bottom: 0;
+  }
+
+  p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #ced4da;
+    pointer-events: none;
+    height: 0;
+  }
+
+  ul[data-type="taskList"] {
+    list-style: none;
+    padding: 0;
+    p {
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+
+      > label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        user-select: none;
+        input[type='checkbox'] {
+          cursor: pointer;
+        }
+      }
+
+      > div {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  ul {
+    padding: 0 1rem;
+    list-style: disc;
+  }
+  ol {
+    padding: 0 1rem;
+    list-style: decimal;
+  }
+
+  hr {
+    height: 3px;
+  }
+
+  blockquote {
+    padding-left: 0.75rem;
+    border-left: 3px solid rgba(#0D0D0D, 0.1);
+  }
+
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
