@@ -23,7 +23,7 @@ const safeDOM = {
     if (Array.from(parent.children).find(e => e === child)) {
       return parent.removeChild(child)
     }
-  },
+  }
 }
 
 /**
@@ -77,7 +77,7 @@ function useLoading() {
     removeLoading() {
       safeDOM.remove(document.head, oStyle)
       safeDOM.remove(document.body, oDiv)
-    },
+    }
   }
 }
 

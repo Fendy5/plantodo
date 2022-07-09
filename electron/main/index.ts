@@ -2,6 +2,9 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'os'
 import { join } from 'path'
 
+const isDevelopment = process.env.NODE_ENV !== 'production'
+let loginWindow: BrowserWindow | null = null
+
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
 
@@ -73,20 +76,38 @@ app.on('activate', () => {
   }
 })
 
-// new window example arg: new windows url
-ipcMain.handle("open-win", (event, arg) => {
-  const childWindow = new BrowserWindow({
-    webPreferences: {
-      preload: splash,
-    },
-  })
-
-  if (app.isPackaged) {
-    childWindow.loadFile(join(__dirname, `../renderer/index.html`), {
-      hash: `${arg}`,
+ipcMain.on('login-window', (event, args) => {
+  if (!loginWindow) {
+    loginWindow = new BrowserWindow({
+      width: 600,
+      height: 300,
+      frame: false,
+      titleBarStyle: 'hidden',
+      webPreferences: {
+        devTools: true,
+        nodeIntegration: true,
+        contextIsolation: false
+      }
     })
+    loginWindow.on('closed', () => {
+      loginWindow = null
+    })
+    if (app.isPackaged) {
+      // loginWindow.loadFile(join(__dirname, `../renderer/index.html`), {
+      //   hash: `login`
+      // })
+      loginWindow.loadFile(join(__dirname, '../../index.html'),{
+        hash: 'login'
+      })
+    } else {
+      loginWindow.loadURL(`${url}/#login`)
+    }
   } else {
-    childWindow.loadURL(`${url}/#${arg}`)
-    // childWindow.webContents.openDevTools({ mode: "undocked", activate: true })
+    if (args) {
+      win?.webContents.send('set-userinfo', args)
+      loginWindow.close()
+    } else {
+      loginWindow.focus()
+    }
   }
 })
