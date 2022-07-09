@@ -25,12 +25,18 @@ const url = `http://${process.env['VITE_DEV_SERVER_HOST']}:${process.env['VITE_D
 
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
+    title: 'PlanTodo',
+    minWidth: 840,
+    width: 820,
+    height: 800,
+    frame: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
+      devTools: isDevelopment,
       preload: splash,
       nodeIntegration: true,
-      contextIsolation: false,
-    },
+      contextIsolation: false
+    }
   })
 
   if (app.isPackaged) {
