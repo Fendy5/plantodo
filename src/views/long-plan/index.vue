@@ -1,9 +1,9 @@
 <template>
-  <div>long-plan</div>
+  <div>开发中</div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue"
+import { defineComponent } from "vue"
 
 export default defineComponent({})
 </script>

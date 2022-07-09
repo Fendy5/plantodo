@@ -1,9 +1,9 @@
 <template>
-  <div>draft</div>
+  <div>未提上议程</div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue"
+import { defineComponent } from "vue"
 
 export default defineComponent({})
 </script>

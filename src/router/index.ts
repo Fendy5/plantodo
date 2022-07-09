@@ -68,6 +68,14 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/about/index.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      hidden: true
+    },
+    component: ()=> import('@/views/login/index.vue')
   }
 ]
 
