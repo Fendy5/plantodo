@@ -1,6 +1,6 @@
 import { rmSync } from 'fs'
-import {join, resolve as resolvePath} from 'path'
-import { defineConfig } from 'vite'
+import { join, resolve as resolvePath } from 'path'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron/renderer'
@@ -11,7 +11,10 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 rmSync('dist', { recursive: true, force: true }) // v14.14.0
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default ( { mode } ) => defineConfig({
+  define: {
+    'process.env': loadEnv(mode, process.cwd())
+  },
   resolve: {
     alias: {
       '@': resolvePath(__dirname, './src')
