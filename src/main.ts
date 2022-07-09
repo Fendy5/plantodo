@@ -7,9 +7,16 @@ import svgIcon from "@/components/SvgIcon/index.vue"
 import '@/styles/tailwind.css'
 import '@/styles/index.less'
 import { setupRouter } from "./router"
+import { setupStore } from "@/store"
+import { getUserInfo } from "@/store/helper"
 
-const app = createApp(App)
-setupRouter(app)
-app.component('svg-icon', svgIcon)
-app.mount('#app')
-  .$nextTick(window.removeLoading)
+const bootstrap = () => {
+  const app = createApp(App)
+  setupStore(app)
+  setupRouter(app)
+  getUserInfo()
+  app.component('svg-icon', svgIcon)
+  app.mount('#app').$nextTick(window.removeLoading)
+}
+
+bootstrap()
